@@ -1,5 +1,11 @@
+.Note {
+    padding: 0;
+    margin: 0;
+}
+
 .NoteItem {
     margin: 20px;
+    list-style-type: none;
 }
 
 .NoteItem__title-card {

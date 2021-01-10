@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import NoteItem from './NoteItem/NoteItem';
+import NoteList from './NoteList/NoteList';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <h1>Noteful</h1>
       </header>
       <main>
-        <NoteItem />
+        <NoteList />
       </main>
     </div>
   );
