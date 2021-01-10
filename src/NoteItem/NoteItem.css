@@ -1,0 +1,16 @@
+.NoteItem {
+    margin: 20px;
+}
+
+.NoteItem__title-card {
+    border: 2px solid grey;
+    background-color: lightgoldenrodyellow;
+    text-align: left;
+    color: black;
+    font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+}
+
+.NoteItem__content {
+    font-family: Verdana, 'Geneva', Tahoma, sans-serif;
+    text-align: left;
+}
