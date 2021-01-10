@@ -1,6 +1,9 @@
+import NoteItem from "../NoteItem/NoteItem"
+
+
 export default function FolderList(props) {
     return (
-        <ul class='FolderList'>
+        <ul className='FolderList'>
         </ul>
     )
 }
