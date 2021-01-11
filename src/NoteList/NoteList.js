@@ -7,7 +7,7 @@ export default function NoteList(props) {
     return (
         <section className='NoteList'>
          <ul>
-            {props.store["notes"].map(note =>
+            {props.notes.map(note =>
                 <NoteItem key={note.id} note={note}/> 
             )}
          </ul>

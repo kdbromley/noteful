@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import './FolderList.css';
+import './MainSideBar.css';
 
 
 export default function MainSideBar(props) {
@@ -8,7 +8,8 @@ export default function MainSideBar(props) {
         <div className='MainSideBar'>
             <ul className='MainSideBar__list'>
                 {props.folders.map(folder =>
-                    <li key={folder.id}>
+                    <li key={folder.id}
+                        className='MainSideBar__folder'>
                         <NavLink 
                           classname='MainSideBar__folder-link'
                           to={`/folder/${folder.id}`}
@@ -29,6 +30,6 @@ export default function MainSideBar(props) {
     )
 }
 
-NoteListNav.defaultProps = {
+MainSideBar.defaultProps = {
     folders: []
 }
