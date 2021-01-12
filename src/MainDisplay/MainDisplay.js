@@ -1,3 +1,5 @@
+import './MainDisplay.css'
+
 export default function MainDisplay() {
     return (
         <div className='MainDisplay'>

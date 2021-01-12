@@ -1,0 +1,5 @@
+.Sidebar {
+    grid-area: sidebar;
+    background-color: #212021;
+    height: 100vh;
+}
