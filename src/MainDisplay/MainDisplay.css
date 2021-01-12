@@ -1,4 +1,9 @@
 .MainDisplay {
     grid-area: main;
-    background-color: #413C40;
+    height: 100vh;
+}
+
+.MainDisplay__list {
+    list-style-type: none;
+    padding: 1px;
 }

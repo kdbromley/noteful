@@ -1,10 +1,12 @@
+import NoteItem from '../NoteItem/NoteItem';
 import './MainDisplay.css'
 
 export default function MainDisplay() {
     return (
         <div className='MainDisplay'>
-            <p>Here are all your notes!
-            </p>
+            <ul className='MainDisplay__list'>
+                <NoteItem />
+            </ul>
         </div>
     )
 }
