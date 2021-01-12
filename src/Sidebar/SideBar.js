@@ -8,7 +8,7 @@ export default function Sidebar(props) {
         <nav className='Sidebar'>
             <ul className='Sidebar__list'> 
             {folders.map(folder => 
-             <li class='FolderItem' key={folder.id}>
+             <li className='FolderItem' key={folder.id}>
                 <NavLink to={`/folder/${folder.id}`} className='FolderItem__link'>{folder.name}</NavLink>
             </li>
             )}
