@@ -4,6 +4,7 @@ import './App.css';
 import {STORE as dummy} from './dummy-store';
 import MainDisplay from './MainDisplay/MainDisplay';
 import NotePageDisplay from './NotePageDisplay/NotePageDisplay';
+import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 import Sidebar from './Sidebar/SideBar';
 
 class App extends Component {
@@ -21,6 +22,9 @@ class App extends Component {
     function findNote(notes=[], noteId) {
       return notes.find(note => note.id === noteId)
     }
+    function findFolder(folders=[], folderId) {
+      return folders.find(folder => folder.id === folderId)
+    }
 
     return (
       <>
@@ -28,11 +32,14 @@ class App extends Component {
          path='/note/:noteId'
          render={(routeProps) => {
            const noteId =  routeProps.match.params.noteId;
+           const note = findNote(notes, noteId);
+           const folderId = note.folderId;
+           const folder = findFolder(folders, folderId)
           return(
          <> 
-          <Sidebar notes={notes} folders={folders} 
+          <NotePageSidebar  folder={folder} 
           {...routeProps}/>
-          <NotePageDisplay note={findNote(notes, noteId)} 
+          <NotePageDisplay note={note} 
           {...routeProps}/>
          </>
           )
@@ -67,7 +74,7 @@ class App extends Component {
      <Route 
       path='/folder/:folderId'
       render={(routeProps) => {
-        const folderId = routeProps.match.params.folderId
+        const {folderId} = routeProps.match.params.folderId
         const filteredNotes = getNotes(notes, folderId)
         return(
          <>

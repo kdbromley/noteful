@@ -1,0 +1,12 @@
+.NotePageSideBar {
+    grid-area: sidebar;
+    background-color: #212021;
+    height: 100vh;
+}
+
+.Sidebar__back {
+    background-color: #EBE8DE;
+    color: #212021;
+    border: 1px solid #212021;
+    border-radius: 50%;
+}
