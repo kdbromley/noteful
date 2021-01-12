@@ -1,12 +1,22 @@
+import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 import FolderItem from '../FolderItem/FolderItem';
 
-export default function Sidebar() {
+export default function Sidebar(props) {
+    const folders = props.folders;
     return (
-        <div className='Sidebar'>
-            <ul className='Sidebar__list'>
-                <FolderItem />
+        <nav className='Sidebar'>
+            <ul className='Sidebar__list'> 
+            {folders.map(folder => 
+             <li class='FolderItem' key={folder.id}>
+                <NavLink to={`/folder/${folder.id}`} className='FolderItem__link'>{folder.name}</NavLink>
+            </li>
+            )}
             </ul>
-        </div>
+        </nav>
     )
+}
+
+Sidebar.defaultProps = {
+    folders: []
 }
