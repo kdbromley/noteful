@@ -71,10 +71,10 @@ class App extends Component {
         </>
       }
      />
-     <Route 
+     <Route exact
       path='/folder/:folderId'
       render={(routeProps) => {
-        const {folderId} = routeProps.match.params.folderId
+        const folderId = routeProps.match.params.folderId
         const filteredNotes = getNotes(notes, folderId)
         return(
          <>
