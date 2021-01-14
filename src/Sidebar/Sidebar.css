@@ -9,3 +9,21 @@
     padding: 0;
     margin: 3px;
 }
+
+.Sidebar__folder-link {
+    padding: 10px;
+    color: #a9bdc5;
+    border: 2px solid #77776F;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #a9bdc5;
+}
+
+.active {
+    color: gold;
+    font-weight: 600;
+    letter-spacing: 3pt;
+}

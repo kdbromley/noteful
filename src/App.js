@@ -57,12 +57,22 @@ class App extends Component {
   renderNotePage() {
     return (
       <>
-        <Route 
-         path='/note/:noteId'
-         >
-           <NotePageSideBar />
-           <NotePageDisplay />
-         </Route>
+        {['/', '/note/:noteId'].map(path => (
+          <Route
+            exact
+            key={path}
+            path={path}
+            component={NotePageSidebar}
+          />
+        ))}
+        {['/', '/note/:noteId'].map(path => (
+          <Route
+            exact
+            key={path}
+            path={path}
+            component={NotePageDisplay}
+          />
+        ))}
       </>
     )
   }

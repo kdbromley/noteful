@@ -11,8 +11,8 @@ export default class Sidebar extends Component {
         <nav className='Sidebar'>
             <ul className='Sidebar__list'> 
             {folders.map(folder => 
-             <li className='FolderItem' key={folder.id}>
-                <NavLink to={`/folder/${folder.id}`} className='FolderItem__link'>{folder.name}</NavLink>
+             <li className='Sidebar__folder-link' key={folder.id}>
+                <NavLink to={`/folder/${folder.id}`} activeClassName='active'>{folder.name}</NavLink>
             </li>
             )}
             </ul>
