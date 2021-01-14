@@ -7,7 +7,7 @@ export default function NotePageSideBar(props) {
             <button type='buton' className='Sidebar__back'>
                 <Link to='/'>Back</Link>
             </button>
-    <h3>{props.folder.name}</h3>
+    <h3>Folder</h3>
         </div>
     )
 }

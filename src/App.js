@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
-import {STORE as dummy} from './dummy-store';
+import config from './config';
+import NotesContext from './NotesContext';
 import MainDisplay from './MainDisplay/MainDisplay';
 import NotePageDisplay from './NotePageDisplay/NotePageDisplay';
 import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 import Sidebar from './Sidebar/SideBar';
+import NotePageSideBar from './NotePageSidebar/NotePageSidebar';
+
 
 class App extends Component {
   state = {
@@ -13,87 +16,90 @@ class App extends Component {
     folders: []
   }
 
+  loadNotes = notes => {
+    this.setState({
+      notes: notes
+    })
+  }
+
+  loadFolders = folders => {
+    this.setState({
+      folders: folders
+    })
+  }
+
   componentDidMount() {
-    this.setState(dummy)
+    fetch(config.NOTES_ENDPOINT, {
+      method: 'GET'
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw new Error(response.status)
+      }
+      return response.json()
+    })
+    .then(this.loadNotes)
+    .catch(err => alert(err.message));
+
+    fetch(config.FOLDERS_ENDPOINT, {
+      method: 'GET'
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw new Error(response.status)
+      }
+      return response.json()
+    })
+    .then(this.loadFolders)
+    .catch(err => alert(err.message))
   }
 
   renderNotePage() {
-    const {notes, folders} = this.state;
-    function findNote(notes=[], noteId) {
-      return notes.find(note => note.id === noteId)
-    }
-    function findFolder(folders=[], folderId) {
-      return folders.find(folder => folder.id === folderId)
-    }
-
     return (
       <>
         <Route 
          path='/note/:noteId'
-         render={(routeProps) => {
-           const noteId =  routeProps.match.params.noteId;
-           const note = findNote(notes, noteId);
-           const folderId = note.folderId;
-           const folder = findFolder(folders, folderId)
-          return(
-         <> 
-          <NotePageSidebar  folder={folder} 
-          {...routeProps}/>
-          <NotePageDisplay note={note} 
-          {...routeProps}/>
-         </>
-          )
-         }}
-        />
+         >
+           <NotePageSideBar />
+           <NotePageDisplay />
+         </Route>
       </>
     )
   }
 
 
   renderMainDisplay() {
-    const {notes, folders} = this.state;
-    function getNotes(notes=[], folderId) {
-      return ((!folderId)
-      ? notes
-      : notes.filter(note => note.folderId === folderId) 
-      )
-    }
-
     return (
       <>
-      <Route exact 
-      path='/'
-      render={(routeProps) =>
-       <>
-        <Sidebar folders={folders} notes={notes}
-         {...routeProps} /> 
-        <MainDisplay folders={folders} notes={notes} />
-        </>
-      }
-     />
-     <Route exact
-      path='/folder/:folderId'
-      render={(routeProps) => {
-        const folderId = routeProps.match.params.folderId
-        const filteredNotes = getNotes(notes, folderId)
-        return(
-         <>
-          <Sidebar folders={folders} notes={notes}
-          {...routeProps} /> 
-          <MainDisplay folders={folders} notes={filteredNotes} 
-          {...routeProps} />
-         </>
-        )
-       }
-      } 
-     />
+      {['/', '/folder/:folderId'].map(path => (
+        <Route
+            exact
+            key={path}
+            path={path}
+            component={Sidebar}
+        />
+      ))}
+
+      {['/', '/folder/:folderId'].map(path => (
+        <Route
+            exact
+            key={path}
+            path={path}
+            component={MainDisplay}
+        />
+      ))}
      </>
     )
   }
   
   render() {
+    const value = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+    }
     return (
       <div className="App">
+        <NotesContext.Provider value={value}>
         <header className='App__header'>
           <h1>
             <Link to='/'>Noteful</Link>
@@ -103,6 +109,7 @@ class App extends Component {
           {this.renderMainDisplay()}
           {this.renderNotePage()}
         </main>
+        </NotesContext.Provider>
       </div>
     );
   }

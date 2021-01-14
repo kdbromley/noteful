@@ -1,9 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import FolderItem from '../FolderItem/FolderItem';
+import { Component } from 'react';
+import NotesContext from '../NotesContext';
 
-export default function Sidebar(props) {
-    const folders = props.folders;
+export default class Sidebar extends Component {
+    static contextType = NotesContext
+    render() {
+        const folders = this.context.folders
     return (
         <nav className='Sidebar'>
             <ul className='Sidebar__list'> 
@@ -15,6 +18,7 @@ export default function Sidebar(props) {
             </ul>
         </nav>
     )
+  }
 }
 
 Sidebar.defaultProps = {
