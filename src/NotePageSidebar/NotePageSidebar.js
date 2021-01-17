@@ -1,13 +1,42 @@
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './NotePageSidebar.css'
+import NotesContext from '../NotesContext';
+import './NotePageSidebar.css';
 
-export default function NotePageSideBar(props) {
-    return (
-        <div class='NotePageSideBar'>
-            <button type='buton' className='Sidebar__back'>
+function findNote(notes=[], noteId) {
+    return notes.find(note => note.id === noteId)
+}
+function findFolder(folders, folderId) {
+    return folders.find(folder => folder.id === folderId)
+}
+
+export default class NotePageSideBar extends Component {
+    static contextType = NotesContext;
+    static defaultProps= {
+        history: {
+            goBack: () => { }
+        },
+        match: {
+            params: {}
+        }
+    }
+
+    render() {
+       const { notes, folders } =  this.context
+        const { noteId } = this.props.match.params
+        const note = findNote(notes, noteId)
+        const folder = findFolder(folders, note.folderId)
+        return (
+            <div key={folder.id} className='NotePageSideBar'>
+                <button type='button' className='Sidebar__back'>
                 <Link to='/'>Back</Link>
-            </button>
-    <h3>Folder</h3>
-        </div>
-    )
+                </button>
+                {folder && (
+                    <h3 className='NotePageSidebar__folder-name'>
+                      {folder.name}
+                    </h3>
+                )}
+            </div>
+        )
+    }
 }

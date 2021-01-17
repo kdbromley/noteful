@@ -13,7 +13,9 @@ import NotePageSideBar from './NotePageSidebar/NotePageSidebar';
 class App extends Component {
   state = {
     notes: [],
-    folders: []
+    folders: [],
+    currentFolder: {},
+    currentNote: {}
   }
 
   loadNotes = notes => {
@@ -28,51 +30,63 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-    fetch(config.NOTES_ENDPOINT, {
-      method: 'GET'
-    })
-    .then(response => {
-      if(!response.ok) {
-        throw new Error(response.status)
-      }
-      return response.json()
-    })
-    .then(this.loadNotes)
-    .catch(err => alert(err.message));
-
-    fetch(config.FOLDERS_ENDPOINT, {
-      method: 'GET'
-    })
-    .then(response => {
-      if(!response.ok) {
-        throw new Error(response.status)
-      }
-      return response.json()
-    })
-    .then(this.loadFolders)
-    .catch(err => alert(err.message))
+  setCurrentFolder = folder => {
+    this.setState({ currentFolder: folder })
   }
+
+  setCurrentNote = note => {
+    this.setState({ currentNote: note })
+  }
+
+  deleteNote = (noteId) => { 
+    const updatedNotes = this.state.notes.filter(note => 
+      !note.id === noteId
+    )
+    this.setState({updatedNotes}) }
+
+  componentDidMount() {
+    Promise.all([
+    fetch(config.NOTES_ENDPOINT),
+    fetch(config.FOLDERS_ENDPOINT)
+    ])
+    .then(([notesResponse, foldersResponse]) => {
+      if(!notesResponse.ok) 
+        return notesResponse.json().then(e => Promise.reject(e));
+      if(!foldersResponse.ok)
+        return foldersResponse.json().then(e => Promise.reject(e));
+    
+      return Promise.all([notesResponse.json(), foldersResponse.json()]);
+    })
+    .then(([notes, folders]) => {
+      this.loadNotes(notes);
+      this.loadFolders(folders);
+    })
+    .catch(err => {
+      console.error({err})
+    });
+  }
+
+  handleDeleteNote =  noteId => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteId)
+    })
+  }
+
+
 
   renderNotePage() {
     return (
       <>
-        {['/', '/note/:noteId'].map(path => (
           <Route
             exact
-            key={path}
-            path={path}
+            path='/note/:noteId'
             component={NotePageSidebar}
           />
-        ))}
-        {['/', '/note/:noteId'].map(path => (
           <Route
             exact
-            key={path}
-            path={path}
+            path='/note/:noteId'
             component={NotePageDisplay}
           />
-        ))}
       </>
     )
   }
@@ -81,23 +95,27 @@ class App extends Component {
   renderMainDisplay() {
     return (
       <>
-      {['/', '/folder/:folderId'].map(path => (
         <Route
             exact
-            key={path}
-            path={path}
+            path='/'
             component={Sidebar}
         />
-      ))}
-
-      {['/', '/folder/:folderId'].map(path => (
         <Route
             exact
-            key={path}
-            path={path}
+            path='/'
             component={MainDisplay}
         />
-      ))}
+
+        <Route
+            exact
+            path='/folder/:folderId'
+            component={Sidebar}
+        />
+        <Route
+            exact
+            path='/folder/:folderId'
+            component={MainDisplay}
+        />
      </>
     )
   }
@@ -106,6 +124,8 @@ class App extends Component {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
+      currentFolder: this.state.currentFolder,
+      currentNote: this.state.currentNote
     }
     return (
       <div className="App">

@@ -5,6 +5,9 @@ import NotesContext from '../NotesContext';
 
 export default class Sidebar extends Component {
     static contextType = NotesContext
+    componentDidMount() {
+        console.log(this.props.match.params)
+    }
     render() {
         const folders = this.context.folders
     return (
