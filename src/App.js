@@ -7,15 +7,14 @@ import MainDisplay from './MainDisplay/MainDisplay';
 import NotePageDisplay from './NotePageDisplay/NotePageDisplay';
 import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 import Sidebar from './Sidebar/SideBar';
-import NotePageSideBar from './NotePageSidebar/NotePageSidebar';
+import AddFolder from './AddFolder/AddFolder';
 
 
 class App extends Component {
   state = {
     notes: [],
     folders: [],
-    currentFolder: {},
-    currentNote: {}
+    error: null
   }
 
   loadNotes = notes => {
@@ -30,19 +29,6 @@ class App extends Component {
     })
   }
 
-  setCurrentFolder = folder => {
-    this.setState({ currentFolder: folder })
-  }
-
-  setCurrentNote = note => {
-    this.setState({ currentNote: note })
-  }
-
-  deleteNote = (noteId) => { 
-    const updatedNotes = this.state.notes.filter(note => 
-      !note.id === noteId
-    )
-    this.setState({updatedNotes}) }
 
   componentDidMount() {
     Promise.all([
@@ -66,12 +52,23 @@ class App extends Component {
     });
   }
 
-  handleDeleteNote =  noteId => {
+  handleAddNote = note => {
+    this.setState({
+      notes: [...this.state.notes, note]
+    })
+  }
+
+  handleAddFolder = folder => {
+    this.setState({
+      folders: [...this.state.folders, folder]
+    })
+  }
+
+  handleDeleteNote = noteId => {
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId)
     })
   }
-
 
 
   renderNotePage() {
@@ -116,6 +113,10 @@ class App extends Component {
             path='/folder/:folderId'
             component={MainDisplay}
         />
+        <Route
+          path='/addFolder'
+          component={AddFolder}
+          />
      </>
     )
   }
@@ -124,8 +125,9 @@ class App extends Component {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
-      currentFolder: this.state.currentFolder,
-      currentNote: this.state.currentNote
+      addNote: this.handleAddNote,
+      addFolder: this.handleAddFolder,
+      deleteNote: this.handleDeleteNote
     }
     return (
       <div className="App">

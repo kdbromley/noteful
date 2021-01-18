@@ -8,6 +8,10 @@
     grid-template-columns: 3fr 3fr 1fr;
 }
 
+.NoteItem > a {
+    color: #212021;
+}
+
 .NoteItem__del-button {
     background-color: #77776F;
     padding: 3px;
@@ -23,9 +27,6 @@ h3, h4 {
     line-height: 500%;
 }
 
-a {
-    color: #212021;
-}
 
 @media all and (min-width:600px) {
     .NoteItem {

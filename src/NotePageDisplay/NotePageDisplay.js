@@ -15,13 +15,14 @@ export default class NotePageDisplay extends Component {
   handleDeleteNote = noteId => {
     this.props.history.push('/')
   }
+
   render() {
   const { noteId } = this.props.match.params
   const  { notes= [] } = this.context
-  const note = findNote(notes, noteId) || {content: '' }
+  const note = findNote(notes, noteId) || { content: '' }
     return (
       <section className='NotePage'>
-          <NoteItem note={note} key={note.id} onDeleteNot={this.handleDeleteNote}/>
+          <NoteItem note={note} key={note.id} onDeleteNote={this.handleDeleteNote}/>
         <div className='Note__content'>
             <p>{note.content}</p>
         </div>

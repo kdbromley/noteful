@@ -11,3 +11,10 @@ export const getNotes = (notes=[], folderId) => {
   : notes.filter(note => note.folderId === folderId) 
   )
 }
+
+ function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
+export const rand = randomString(3, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');

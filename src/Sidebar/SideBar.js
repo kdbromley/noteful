@@ -1,13 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Sidebar.css';
 import { Component } from 'react';
 import NotesContext from '../NotesContext';
 
 export default class Sidebar extends Component {
     static contextType = NotesContext
-    componentDidMount() {
-        console.log(this.props.match.params)
-    }
     render() {
         const folders = this.context.folders
     return (
@@ -19,6 +16,11 @@ export default class Sidebar extends Component {
             </li>
             )}
             </ul>
+            <button className='Sidebar__add-folder-button'>
+                <Link to='/addfolder'>
+                    Add Folder
+                </Link>
+            </button>
         </nav>
     )
   }

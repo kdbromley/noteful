@@ -1,14 +1,9 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NotesContext from '../NotesContext';
+import {findNote, findFolder} from '../helperFunc';
 import './NotePageSidebar.css';
 
-function findNote(notes=[], noteId) {
-    return notes.find(note => note.id === noteId)
-}
-function findFolder(folders, folderId) {
-    return folders.find(folder => folder.id === folderId)
-}
 
 export default class NotePageSideBar extends Component {
     static contextType = NotesContext;
@@ -27,13 +22,13 @@ export default class NotePageSideBar extends Component {
         const note = findNote(notes, noteId)
         const folder = findFolder(folders, note.folderId)
         return (
-            <div key={folder.id} className='NotePageSideBar'>
-                <button type='button' className='Sidebar__back'>
+            <div key={folder.id} className='Sidebar'>
+                <button type='button' className='Sidebar__back-button'>
                 <Link to='/'>Back</Link>
                 </button>
                 {folder && (
-                    <h3 className='NotePageSidebar__folder-name'>
-                      {folder.name}
+                    <h3 className='Sidebar__folder-name'>
+                     <span>&#12304;</span> {folder.name} <span>&#12305;</span>
                     </h3>
                 )}
             </div>
