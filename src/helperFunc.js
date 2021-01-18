@@ -18,3 +18,5 @@ export const getNotes = (notes=[], folderId) => {
     return result;
 }
 export const rand = randomString(3, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+export const date = new Date().toJSON().slice(0,10).replace(/-/g,'/');

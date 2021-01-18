@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import NoteItem from '../NoteItem/NoteItem';
 import NotesContext from '../NotesContext';
 import {getNotes} from '../helperFunc';
-import './MainDisplay.css'
+import PropTypes from 'prop-types';
+import './MainDisplay.css';
 
 
 
@@ -44,3 +45,7 @@ class MainDisplay extends Component {
 }
 
 export default MainDisplay;
+
+MainDisplay.propTypes = {
+    match: PropTypes.object
+  }

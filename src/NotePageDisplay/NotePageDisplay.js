@@ -3,6 +3,7 @@ import NoteItem from '../NoteItem/NoteItem';
 import NotesContext from '../NotesContext';
 import {findNote} from '../helperFunc';
 import './NotePageDisplay.css';
+import  PropTypes  from 'prop-types';
 
 export default class NotePageDisplay extends Component {
   static contextType = NotesContext;
@@ -17,9 +18,9 @@ export default class NotePageDisplay extends Component {
   }
 
   render() {
-  const { noteId } = this.props.match.params
-  const  { notes= [] } = this.context
-  const note = findNote(notes, noteId) || { content: '' }
+   const { noteId } = this.props.match.params
+   const  { notes= [] } = this.context
+   const note = findNote(notes, noteId) || { content: '' }
     return (
       <section className='NotePage'>
           <NoteItem note={note} key={note.id} onDeleteNote={this.handleDeleteNote}/>
@@ -27,7 +28,19 @@ export default class NotePageDisplay extends Component {
             <p>{note.content}</p>
         </div>
       </section>
-      )            
+    )            
   }
 }
+
+NotePageDisplay.propTypes = { 
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.shape({
+      isExact: PropTypes.bool,
+      params: PropTypes.object,
+      path: PropTypes.string,
+      url: PropTypes.string
+  })
+}
+
 

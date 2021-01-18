@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import config from '../config';
 import NotesContext from '../NotesContext';
 import './NoteItem.css';
@@ -52,4 +53,15 @@ export default class NoteItem extends Component {
         </div>
     )
   }
+}
+
+NoteItem.propsType = {
+  note: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string,
+    folderId: PropTypes.string,
+    content: PropTypes.string
+  })),
+  deleteNote: PropTypes.func
 }

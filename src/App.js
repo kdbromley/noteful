@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import './App.css';
 import config from './config';
 import NotesContext from './NotesContext';
 import MainDisplay from './MainDisplay/MainDisplay';
@@ -8,6 +7,9 @@ import NotePageDisplay from './NotePageDisplay/NotePageDisplay';
 import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 import Sidebar from './Sidebar/SideBar';
 import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
+import ErrorBoundary from './ErrorBoundary';
+import './App.css';
 
 
 class App extends Component {
@@ -113,11 +115,22 @@ class App extends Component {
             path='/folder/:folderId'
             component={MainDisplay}
         />
+      </>
+    )
+  }
+
+  renderAddRoutes() {
+    return(
+      <>
         <Route
           path='/addFolder'
           component={AddFolder}
-          />
-     </>
+        />
+        <Route
+         path='/addNote'
+         component={AddNote}
+        />
+      </>
     )
   }
   
@@ -138,8 +151,15 @@ class App extends Component {
           </h1>
         </header>
         <main className='App__main'>
+          <ErrorBoundary>
           {this.renderMainDisplay()}
+          </ErrorBoundary>
+          <ErrorBoundary>
           {this.renderNotePage()}
+          </ErrorBoundary>
+          <ErrorBoundary>
+          {this.renderAddRoutes()}
+          </ErrorBoundary>
         </main>
         </NotesContext.Provider>
       </div>

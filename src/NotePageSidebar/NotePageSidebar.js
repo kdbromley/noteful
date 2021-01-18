@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import NotesContext from '../NotesContext';
 import {findNote, findFolder} from '../helperFunc';
 import './NotePageSidebar.css';
@@ -34,4 +35,15 @@ export default class NotePageSideBar extends Component {
             </div>
         )
     }
+}
+
+NotePageSideBar.propTypes = { 
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.shape({
+        isExact: PropTypes.bool,
+        params: PropTypes.object,
+        path: PropTypes.string,
+        url: PropTypes.string
+    })
 }
