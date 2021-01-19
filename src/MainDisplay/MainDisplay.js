@@ -47,5 +47,12 @@ class MainDisplay extends Component {
 export default MainDisplay;
 
 MainDisplay.propTypes = {
-    match: PropTypes.object
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.shape({
+        isExact: PropTypes.bool,
+        params: PropTypes.object,
+        path: PropTypes.string,
+        url: PropTypes.string
+    })
   }

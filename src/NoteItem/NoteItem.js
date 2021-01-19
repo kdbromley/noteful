@@ -57,11 +57,11 @@ export default class NoteItem extends Component {
 
 NoteItem.propsType = {
   note: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    modified: PropTypes.string,
-    folderId: PropTypes.string,
+    modified: PropTypes.string.isRequired,
+    folderId: PropTypes.string.isRequired,
     content: PropTypes.string
-  })),
+  })).isRequired,
   deleteNote: PropTypes.func
 }
