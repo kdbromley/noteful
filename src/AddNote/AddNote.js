@@ -13,11 +13,12 @@ class AddNote extends Component {
         super(props)
         this.state = {
           name: {
-            value: ''
+            value: '',
+            touched: false,
           }
         }
     }
-
+  
 
   handleClickCancel = () => {
     this.props.history.push('/')
@@ -61,12 +62,17 @@ class AddNote extends Component {
   }  
 
   updateNoteName(name) {
-      this.setState({name: {value: name}});
+      this.setState({name: {
+        value: name,
+        touched: true
+      }
+    });
   }
 
     validateNoteName() {
       const name = this.state.name.value.trim();
-      if (name.length === 0) {
+      const touched = this.state.name.touched;
+      if (touched === true && name.length === 0) {
           return 'Name is required'
       } 
     }
@@ -94,7 +100,7 @@ class AddNote extends Component {
            <textarea type='textbox' 
             id='content' name='content'
             rows='6' cols='25'
-            defaultValue='Sunt autem a blanditiis et. Quae eos eos omnis quo distinctio. Consequuntur consequatur magnam et dolorem hic dolor quo assumenda. Excepturi perspiciatis saepe facere explicabo nihil sit saepe voluptatem rerum. Omnis reprehenderit omnis.\n \rProvident atque tempore. Sed totam magni est consequuntur rerum voluptas eveniet facilis saepe. Nulla earum aliquid.\n \rReiciendis aspernatur nihil ut dolor velit dolor. Natus saepe repellat nemo et maxime quasi alias recusandae non. Ab impedit ipsa omnis nobis excepturi voluptatem voluptas tenetur.' 
+            defaultValue=''
            />
           </label>
           <button type='submit'>Save</button>
