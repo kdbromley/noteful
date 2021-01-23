@@ -88,7 +88,8 @@ export default class AddFolder extends Component {
   }  
 }
 
-AddFolder.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
-}
+AddFolder.propTypes = { 
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
+ }

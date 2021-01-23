@@ -22,12 +22,14 @@ export default class NoteItem extends Component {
             }
           })
           .then(response => {
-            if (!response.ok)
-              return response.json().then(e => Promise.reject(e));
-            return response.json();
+            if (!response.ok) {
+              return response.json().then(e => Promise.reject(e))
+            }
+            return response.json()
           })
           .then(() => {
               this.context.deleteNote(noteId)
+              this.props.deleteNote(noteId)
           })
           .catch(err => {
             console.error(err)
@@ -35,7 +37,7 @@ export default class NoteItem extends Component {
         } 
 
     render() {
-    const note = this.props.note;
+    const { note } = this.props
     return (
         <div className='NoteItem'>
             <h3>

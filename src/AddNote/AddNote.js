@@ -72,7 +72,6 @@ class AddNote extends Component {
     }
 
   render() {
-    console.log(this.props);
     const { folders } = this.context;  
     return (
       <div className='AddNote'>
@@ -110,12 +109,10 @@ class AddNote extends Component {
   }
 }
 
-AddNote.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  modified: PropTypes.number.isRequired,
-  folderId: PropTypes.string.isRequired,
-  content: PropTypes.string
-}
+AddNote.propTypes = { 
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
+ }
 
 export default AddNote;

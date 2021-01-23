@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NotesContext from '../NotesContext';
@@ -17,11 +17,11 @@ export default class NotePageSideBar extends Component {
         }
     }
 
-    render() {
-       const { notes, folders } =  this.context
+    render() {  
+        const { notes=[], folders=[] } =  this.context
         const { noteId } = this.props.match.params
-        const note = findNote(notes, noteId)
-        const folder = findFolder(folders, note.folderId)
+        const note = findNote(notes, noteId) || {}
+        const folder = findFolder(folders, note.folderId) || {}
         return (
             <div key={folder.id} className='Sidebar'>
                 <button type='button' className='Sidebar__back-button'>

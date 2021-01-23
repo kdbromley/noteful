@@ -8,8 +8,11 @@ import  PropTypes  from 'prop-types';
 export default class NotePageDisplay extends Component {
   static contextType = NotesContext;
   static defaultProps = {
+    history: {
+      goBack: () => { }
+    },
     match: {
-        params: {}
+      params: {}
     }
 }
 
@@ -23,7 +26,7 @@ export default class NotePageDisplay extends Component {
    const note = findNote(notes, noteId) || { content: '' }
     return (
       <section className='NotePage'>
-          <NoteItem note={note} key={note.id} onDeleteNote={this.handleDeleteNote}/>
+          <NoteItem note={note} key={note.id} deleteNote={this.handleDeleteNote}/>
         <div className='Note__content'>
             <p>{note.content}</p>
         </div>

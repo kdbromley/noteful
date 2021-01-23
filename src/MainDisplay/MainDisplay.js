@@ -17,20 +17,20 @@ class MainDisplay extends Component {
         }
     }
 
-    deleteNote = noteId => {
+    onDeleteNote = noteId => {
         this.props.history.push(`/`)
       }
 
     render() {
         const { folderId } = this.props.match.params
-        const { notes= [] } = this.context
+        const { notes= [] } = this.context 
         const thisFolderNotes = getNotes(notes, folderId)
 
         return (
             <div className='MainDisplay'>
                 <section className='MainDisplay__list'>
                     {thisFolderNotes.map(note => 
-                       <NoteItem key={note.id} note={note} deleteNote={this.deleteNote}/>
+                       <NoteItem key={note.id} note={note} deleteNote={this.onDeleteNote}/>
                     )}
                 </section>
                 <button type='button'
