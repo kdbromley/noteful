@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Noteful App
+Noteful is an app for making note and organizing them within folders. Get that grocery list out of your mind and onto your screen!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live App
+This app was built as a capstone project for the React portion of my program at Thinkful. Because I've only just begun learning server-side skills, the Noteful app is configured to run on a local server provided by Thinkful. As a result, I can't necessarily deploy a live app, at the moment, but below are screenshots providing some representation of the app's UI and functionality. As I progress with my the server-side part of my program, the app will be expanded to be deployed as a live app!
 
-## Available Scripts
+### Screenshots
+Main app display with no folder selected and all notes displayed.
+[screenshot of app, displaying sidebar with list of folders and main display with list of all note with titles, dates, and delete button](README__screenshots/main-display-all-notes.png?raw=true).
 
-In the project directory, you can run:
+Main display with a folder selected, showing only the notes that belong to the folder
+[screenshot of app after selecting folder in sidebar, sidebar showing same list of folders but with current folder named 'new' highlighted, main display only displaying the single note titled 'new' folder, a note titled 'new' with date and delete button](README__screenshots/folder-view.png?raw=true).
 
-### `npm start`
+Page for add folder form 
+[screenshot of app after pressing 'add folder' button on sidebar, new page without sidebar, main display is simple form with a required field for folder name, and then one 'cancel' button and one 'create' button](README__screenshots/new-folder-form.png?raw=true).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Page for add note form
+[screenshot of app after pressing 'create note' button, new page without sidebar, main display is a form with a field to input note name, a drop down menu of the list of folders, and optional content input, with a 'cancel' button and a 'create' button](README__screenshots/create-note-form.png?raw=true).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Page of a specific note
+[screenshot of app after selecting a specific note, displaying the same note card with title, date, and delete button but now also displaying the note's content below; sidebar is changed to a display large 'back' button and only the name of the folder that the note belongs to](README__screenshots/create-note-form.png?raw=true).
 
-### `npm test`
+## Stack
+Built with React
+-bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+-using React Router and Context
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

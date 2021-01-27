@@ -1,11 +1,15 @@
 .NoteItem {
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid #212021;
     background-color: #EBE8DE;
     margin: 5px;
     display: grid;
     grid-template-areas: 'a b c';
     grid-template-columns: 3fr 3fr 1fr;
+}
+
+.NoteItem > a {
+    color: #212021;
 }
 
 .NoteItem__del-button {
@@ -22,6 +26,7 @@ h3, h4 {
     position: relative;
     line-height: 500%;
 }
+
 
 @media all and (min-width:600px) {
     .NoteItem {

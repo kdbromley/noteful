@@ -1,20 +1,29 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import FolderItem from '../FolderItem/FolderItem';
+import { Component } from 'react';
+import NotesContext from '../NotesContext';
 
-export default function Sidebar(props) {
-    const folders = props.folders;
+export default class Sidebar extends Component {
+    static contextType = NotesContext
+    render() {
+        const folders = this.context.folders
     return (
         <nav className='Sidebar'>
             <ul className='Sidebar__list'> 
             {folders.map(folder => 
-             <li className='FolderItem' key={folder.id}>
-                <NavLink to={`/folder/${folder.id}`} className='FolderItem__link'>{folder.name}</NavLink>
+             <li className='Sidebar__folder-link' key={folder.id}>
+                <NavLink to={`/folder/${folder.id}`} activeClassName='active'>{folder.name}</NavLink>
             </li>
             )}
             </ul>
+            <button className='Sidebar__add-folder-button'>
+                <Link to='/addfolder'>
+                    Add Folder
+                </Link>
+            </button>
         </nav>
     )
+  }
 }
 
 Sidebar.defaultProps = {

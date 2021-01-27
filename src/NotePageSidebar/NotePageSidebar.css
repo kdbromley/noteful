@@ -1,0 +1,37 @@
+.Sidebar {
+    grid-area: sidebar;
+    background-color: #212021;
+    height: 100vh;
+}
+
+.Sidebar__back-button {
+    background-color: #EBE8DE;
+    border: 1px solid #212021;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+}
+
+.Sidebar__back-button > a {
+    color: #212021;
+}
+
+.Sidebar__folder-name {
+    color: #a9bdc5;
+    font-size: 20px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+@media all and (min-width: 600px) {
+    .Sidebar__back-button {
+        height: 100px;
+        width: 100px;
+        font-size: 16px;
+    } 
+    .Sidebar__folder-name {
+        writing-mode: horizontal-tb;
+        font-size: 25px;
+    }
+}

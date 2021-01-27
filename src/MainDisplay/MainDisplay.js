@@ -1,15 +1,58 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import NoteItem from '../NoteItem/NoteItem';
-import './MainDisplay.css'
+import NotesContext from '../NotesContext';
+import {getNotes} from '../helperFunc';
+import PropTypes from 'prop-types';
+import './MainDisplay.css';
 
-export default function MainDisplay(props) {
-    const notes = props.notes;
-    return (
-        <div className='MainDisplay'>
-            <ul className='MainDisplay__list'>
-                {notes.map(note => 
-                <NoteItem key={note.id} note={note}/>
-                )}
-            </ul>
-        </div>
-    )
+
+
+
+class MainDisplay extends Component {
+    static contextType = NotesContext;
+    static defaultProps = {
+        match: {
+            params: {}
+        }
+    }
+
+    onDeleteNote = noteId => {
+        this.props.history.push(`/`)
+      }
+
+    render() {
+        const { folderId } = this.props.match.params
+        const { notes= [] } = this.context 
+        const thisFolderNotes = getNotes(notes, folderId)
+
+        return (
+            <div className='MainDisplay'>
+                <section className='MainDisplay__list'>
+                    {thisFolderNotes.map(note => 
+                       <NoteItem key={note.id} note={note} deleteNote={this.onDeleteNote}/>
+                    )}
+                </section>
+                <button type='button'
+                 className='MainDisplay__add-note'>
+                    <Link to='/addNote'>
+                        Add Note
+                    </Link>
+                </button>
+            </div>
+        )
+    }
 }
+
+export default MainDisplay;
+
+MainDisplay.propTypes = {
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.shape({
+        isExact: PropTypes.bool,
+        params: PropTypes.object,
+        path: PropTypes.string,
+        url: PropTypes.string
+    })
+  }

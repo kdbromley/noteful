@@ -9,3 +9,42 @@
     padding: 0;
     margin: 3px;
 }
+
+.Sidebar__folder-link {
+    padding: 10px;
+    color: #a9bdc5;
+    border: 2px solid #77776F;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #a9bdc5;
+    text-decoration: none;
+}
+
+.active {
+    color: gold;
+    font-weight: 600;
+    letter-spacing: 3pt;
+}
+
+.Sidebar__add-folder-button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #EBE8DE;
+
+}
+
+.Sidebar__add-folder-button > a {
+    color: #212021;
+}
+
+@media all and (min-width: 600px) {
+    .Sidebar__add-folder-button {
+        height: 100px;
+        width: 100px;
+    
+    }
+}

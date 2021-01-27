@@ -1,20 +1,49 @@
+import { Component } from 'react';
+import NoteItem from '../NoteItem/NoteItem';
+import NotesContext from '../NotesContext';
+import {findNote} from '../helperFunc';
 import './NotePageDisplay.css';
+import  PropTypes  from 'prop-types';
 
-export default function NotePageDisplay(props) {
-    return (
-      <div key={props.note.id}className='Note'>
-        <div className='Note__card'>
-            <h3>{props.note.name}</h3>
-            <h4>{props.note.modified}</h4>
-            <button 
-             className='Note__del-button'
-             type='button'>
-                Delete
-            </button>
-        </div>
-        <div className='Note__content'>
-            <p>{props.note.content}</p>
-        </div>
-      </div>
-    )
+export default class NotePageDisplay extends Component {
+  static contextType = NotesContext;
+  static defaultProps = {
+    history: {
+      goBack: () => { }
+    },
+    match: {
+      params: {}
+    }
 }
+
+  handleDeleteNote = noteId => {
+    this.props.history.push('/')
+  }
+
+  render() {
+   const { noteId } = this.props.match.params
+   const  { notes= [] } = this.context
+   const note = findNote(notes, noteId) || { content: '' }
+    return (
+      <section className='NotePage'>
+          <NoteItem note={note} key={note.id} deleteNote={this.handleDeleteNote}/>
+        <div className='Note__content'>
+            <p>{note.content}</p>
+        </div>
+      </section>
+    )            
+  }
+}
+
+NotePageDisplay.propTypes = { 
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.shape({
+      isExact: PropTypes.bool,
+      params: PropTypes.object,
+      path: PropTypes.string,
+      url: PropTypes.string
+  })
+}
+
+

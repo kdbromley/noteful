@@ -1,0 +1,33 @@
+.AddNote {
+    grid-column: 1 / 5;
+    margin-top: 20px;
+    color: #EBE8DE;
+    font-size: 25px;
+}
+
+.AddNote__form {
+    display: grid;
+}
+
+input, select {
+    margin: 10px;
+}
+
+textarea {
+    margin: 10px 10px 0 10px;
+}
+
+button {
+    margin: auto;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+@media all and (min-width: 600px) {
+
+}

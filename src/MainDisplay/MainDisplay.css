@@ -7,3 +7,21 @@
     list-style-type: none;
     padding: 1px;
 }
+
+.MainDisplay__add-note {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.MainDisplay__add-note > a {
+    color: #212021;
+}
+
+@media all and (min-width: 600px) {
+    .MainDisplay__add-note {
+        height: 100px;
+        width: 100px;
+    }
+    
+}
