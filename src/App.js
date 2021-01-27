@@ -1,110 +1,108 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import NoteItem from './NoteItem/NoteItem';
-import NoteList from './NoteList/NoteList';
-import MainSideBar from './MainSideBar/MainSideBar';
-import NotePageSideBar from './NotePageSideBar/NotePageSideBar';
-import { STORE } from './dummy-store';
 import './App.css';
-
+import {STORE as dummy} from './dummy-store';
+import MainDisplay from './MainDisplay/MainDisplay';
+import NotePageDisplay from './NotePageDisplay/NotePageDisplay';
+import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
+import Sidebar from './Sidebar/SideBar';
 
 class App extends Component {
   state = {
     notes: [],
     folders: []
-  };
+  }
 
   componentDidMount() {
-    this.setState(STORE)
+    this.setState(dummy)
   }
 
-  renderSideBar() {
+  renderNotePage() {
     const {notes, folders} = this.state;
-    const findFolder = (folders=[], folderId) =>
-    folders.find(folder => folder.id === folderId);
-
-    const findNote = (notes=[], noteId) => 
-    notes.find(note => note.id === noteId);
+    function findNote(notes=[], noteId) {
+      return notes.find(note => note.id === noteId)
+    }
+    function findFolder(folders=[], folderId) {
+      return folders.find(folder => folder.id === folderId)
+    }
 
     return (
       <>
-      {['/', '/folder/:folderId'].map(path => (
-        <Route exact key={path}
-          path={path}
-          render={routeProps => (
-            <MainSideBar 
-              folders={folders}
-              notes={notes}
-              {...routeProps}
-            />
-          )}
-        />
-      ))}
-      <Route path='/note/:noteId'
-        render={routeProps => {
-          const {noteId} = routeProps.match.params;
-          const note = findNote(notes, noteId) || {};
-          const folder = findFolder(folders, note.folderId);
-          return <NotePageSideBar {...routeProps} folder={folder} />;
-        }}
-      />
-    </>
-    );
-  }
-
-  renderNoteList() {
-    const {notes, folders} = this.state;
-    const findNote = (notes=[], noteId) => 
-    notes.find(note => note.id === noteId);
-
-    const getNotesForFolder = (notes=[], folderId) => (
-      (!folderId)
-      ? notes
-      : notes.filter(note => note.folderId === folderId)
-    )
-    return (
-      <>
-        {['/', '/folder/:folderId'].map(path => (
-          <Route exact 
-            key={path}
-            path={path}
-            render={routeProps => {
-              const {folderId} = routeProps.match.params;
-              const notesForFolder = getNotesForFolder(
-                notes,
-                folderId
-              );
-              return (
-                <NoteList 
-                  {...routeProps}
-                  notes={notesForFolder}
-                />
-              )
-            }}
-          />
-        ))}
         <Route 
-          path='/note/:noteId'
-          render={routeProps => {
-            const {noteId} = routeProps.match.params;
-            const note = findNote(notes, noteId)
-            return <NoteItem {...routeProps} note={note} />
-          }}
+         path='/note/:noteId'
+         render={(routeProps) => {
+           const noteId =  routeProps.match.params.noteId;
+           const note = findNote(notes, noteId);
+           const folderId = note.folderId;
+           const folder = findFolder(folders, folderId)
+          return(
+         <> 
+          <NotePageSidebar  folder={folder} 
+          {...routeProps}/>
+          <NotePageDisplay note={note} 
+          {...routeProps}/>
+         </>
+          )
+         }}
         />
       </>
-    );
+    )
   }
 
+
+  renderMainDisplay() {
+    const {notes, folders} = this.state;
+    function getNotes(notes=[], folderId) {
+      return ((!folderId)
+      ? notes
+      : notes.filter(note => note.folderId === folderId) 
+      )
+    }
+
+    return (
+      <>
+      <Route exact 
+      path='/'
+      render={(routeProps) =>
+       <>
+        <Sidebar folders={folders} notes={notes}
+         {...routeProps} /> 
+        <MainDisplay folders={folders} notes={notes} />
+        </>
+      }
+     />
+     <Route exact
+      path='/folder/:folderId'
+      render={(routeProps) => {
+        const folderId = routeProps.match.params.folderId
+        const filteredNotes = getNotes(notes, folderId)
+        return(
+         <>
+          <Sidebar folders={folders} notes={notes}
+          {...routeProps} /> 
+          <MainDisplay folders={folders} notes={filteredNotes} 
+          {...routeProps} />
+         </>
+        )
+       }
+      } 
+     />
+     </>
+    )
+  }
+  
   render() {
     return (
       <div className="App">
-        <nav className='App__nav'>{this.renderSideBar()}</nav>
-          <header className='App__header'>
+        <header className='App__header'>
           <h1>
-            <Link to='/'>Noteful</Link>{' '}
+            <Link to='/'>Noteful</Link>
           </h1>
         </header>
-        <main className='App__main'>{this.renderNoteList()}</main>
+        <main className='App__main'>
+          {this.renderMainDisplay()}
+          {this.renderNotePage()}
+        </main>
       </div>
     );
   }

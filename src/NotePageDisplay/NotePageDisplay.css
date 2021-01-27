@@ -1,14 +1,16 @@
-.NoteItem {
+
+
+.Note__card {
     padding: 10px;
     border: 1px solid black;
     background-color: #EBE8DE;
     margin: 5px;
     display: grid;
     grid-template-areas: 'a b c';
-    grid-template-columns: 3fr 3fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr;
 }
 
-.NoteItem__del-button {
+.Note__del-button {
     background-color: #77776F;
     padding: 3px;
     height: 50%;
@@ -16,16 +18,23 @@
     border-radius: 5%;
 }
 
+.Note__content {
+    color: #EBE8DE;
+}
+
 h3, h4 {
     margin: 0;
     padding: 3px;
     position: relative;
-    line-height: 500%;
 }
 
 @media all and (min-width:600px) {
-    .NoteItem {
+    .Note {
         padding: 20px;
         min-height: 70px;
+    }
+
+    .Note__card {
+        color:blue
     }
 }

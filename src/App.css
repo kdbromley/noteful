@@ -1,4 +1,5 @@
 .App {
+<<<<<<< HEAD
   display:grid;
   grid-template-areas: "sidebar header" "sidebar main";
   min-height: 100vh;
@@ -22,3 +23,36 @@
   overflow: auto;
 }
 
+=======
+  text-align: center;
+  background-color: #413C40;
+  height: 100vh;
+}
+
+.App__main {
+  display: grid;
+  grid-template-areas: 'sidebar main';
+  grid-template-columns: 1fr 2fr;
+}
+
+.App__header {
+  border-bottom: 1px solid black;
+  min-height: 100px;
+  padding: 15px;
+  font-family: 'Montserrat', 'Raleway', 'Roboto', sans-serif;
+  font-weight: 200;
+  letter-spacing: 15pt;
+  font-size: 15pt;
+  color: #829798;
+}
+
+@media all and (min-width:600px) {
+  .App__main {
+    grid-template-columns: 1fr 3fr;
+  }
+  .App__header {
+    letter-spacing: 20pt;
+    font-size: 25px;
+  }
+}
+>>>>>>> reimagine
