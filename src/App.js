@@ -123,11 +123,11 @@ class App extends Component {
     return(
       <>
         <Route
-          path='/addFolder'
+          path='/add-folder'
           component={AddFolder}
         />
         <Route
-         path='/addNote'
+         path='/add-note'
          component={AddNote}
         />
       </>

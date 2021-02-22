@@ -35,7 +35,7 @@ class MainDisplay extends Component {
                 </section>
                 <button type='button'
                  className='MainDisplay__add-note'>
-                    <Link to='/addNote'>
+                    <Link to='/add-note'>
                         Add Note
                     </Link>
                 </button>

@@ -17,9 +17,12 @@ export default class Sidebar extends Component {
             )}
             </ul>
             <button className='Sidebar__add-folder-button'>
-                <Link to='/addfolder'>
+                <Link to='/add-folder'>
                     Add Folder
                 </Link>
+            </button>
+            <button type='button' className='Sidebar__edit-folder-button'>
+                <Link to='/edit-folder'>Edit Folder</Link>
             </button>
         </nav>
     )

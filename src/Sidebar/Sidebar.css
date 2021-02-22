@@ -29,7 +29,7 @@ a {
     letter-spacing: 3pt;
 }
 
-.Sidebar__add-folder-button {
+.Sidebar__add-folder-button, .Sidebar__edit-folder-button {
     height: 60px;
     width: 60px;
     border-radius: 50%;
@@ -37,12 +37,12 @@ a {
 
 }
 
-.Sidebar__add-folder-button > a {
+.Sidebar__add-folder-button > a, .Sidebar__edit-folder-button > a {
     color: #212021;
 }
 
 @media all and (min-width: 600px) {
-    .Sidebar__add-folder-button {
+    .Sidebar__add-folder-button, .Sidebar__edit-folder-button {
         height: 100px;
         width: 100px;
     

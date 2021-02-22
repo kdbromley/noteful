@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import NoteItem from '../NoteItem/NoteItem';
 import NotesContext from '../NotesContext';
 import {findNote} from '../helperFunc';
@@ -30,6 +31,12 @@ export default class NotePageDisplay extends Component {
         <div className='Note__content'>
             <p>{note.content}</p>
         </div>
+        <button type='button'
+         className='Note__edit-note-button'>
+          <Link to='/edit-note'>
+              Edit Note
+          </Link>
+        </button>
       </section>
     )            
   }

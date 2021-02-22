@@ -28,6 +28,16 @@ h3, h4 {
     position: relative;
 }
 
+.Note__edit-note-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.Note__edit-note-button > a {
+    color: #212021;
+}
+
 @media all and (min-width:600px) {
     .Note {
         padding: 20px;
@@ -36,5 +46,10 @@ h3, h4 {
 
     .Note__card {
         color: black;
+    }
+
+    .Note__edit-note-button {
+        height: 100px;
+        width: 100px;
     }
 }
