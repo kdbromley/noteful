@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import config from '../config';
 import NotesContext from '../NotesContext';
+import moment from 'moment';
 import './NoteItem.css';
 
 
@@ -16,16 +17,12 @@ export default class NoteItem extends Component {
         e.preventDefault()
         const noteId = this.props.note.id
          fetch(config.NOTES_ENDPOINT + `/${noteId}`, {
-            method: 'DELETE',
-            header: {
-                'content-type': 'application/json'
-            }
+            method: 'DELETE'
           })
           .then(response => {
             if (!response.ok) {
               return response.json().then(e => Promise.reject(e))
             }
-            return response.json()
           })
           .then(() => {
               this.context.deleteNote(noteId)
@@ -38,14 +35,15 @@ export default class NoteItem extends Component {
 
     render() {
     const { note } = this.props
+    const formattedDate = moment(note.date_created).format('M/D/YYYY')
     return (
         <div className='NoteItem'>
             <h3>
                 <Link to={`/note/${note.id}`}>
-                    {note.name}
+                    {note.note_title}
                 </Link>
             </h3>
-            <h4>{note.modified}</h4>
+            <h4>{formattedDate}</h4>
             <button 
             className='NoteItem__del-button'
             type='delete'

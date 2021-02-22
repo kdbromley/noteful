@@ -4,7 +4,7 @@ import config from './config';
 import NotesContext from './NotesContext';
 import MainDisplay from './MainDisplay/MainDisplay';
 import NotePageDisplay from './NotePageDisplay/NotePageDisplay';
-import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
+import NotePageSidebar from './NotePageSideBar/NotePageSideBar';
 import Sidebar from './Sidebar/SideBar';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';

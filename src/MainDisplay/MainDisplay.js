@@ -17,7 +17,7 @@ class MainDisplay extends Component {
         }
     }
 
-    onDeleteNote = noteId => {
+    onDeleteNote = () => {
         this.props.history.push(`/`)
       }
 

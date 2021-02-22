@@ -1,5 +1,4 @@
 import { Component } from "react"
-import { date, randomString } from "../helperFunc";
 import NotesContext from "../NotesContext"
 import ValidationError from "../ValidationError";
 import config from '../config'
@@ -28,13 +27,10 @@ class AddNote extends Component {
   handleSubmit = e => {
     e.preventDefault(); 
     const { name, folder, content } = e.target
-    const rand = randomString(3, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
       const note = {
-      'id': `d26e0${rand}-ffaf-11e8-8eb2-f2801f1b9fd1`,
-      'name': name.value,
-      'modified': date,
-      'folderId': folder.value,
-      'content': content.value
+      'note_title': name.value,
+      'content': content.value,
+      'folder': folder.value
       } 
     this.setState({ error: null })
 
@@ -78,7 +74,7 @@ class AddNote extends Component {
     }
 
   render() {
-    const { folders } = this.context;  
+    const { folders } = this.context;
     return (
       <div className='AddNote'>
         <form className='AddNote__form'
@@ -92,7 +88,7 @@ class AddNote extends Component {
            <select id='folder' name='folder' 
             className='AddNote__folder'>
             {folders.map(folder => 
-                <option key={folder.id} value={folder.id}>{folder.name}</option>
+                <option key={folder.id} value={folder.id}>{folder.folder_name}</option>
             )}
            </select>
           </label>

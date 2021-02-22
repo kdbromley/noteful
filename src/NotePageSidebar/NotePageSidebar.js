@@ -21,7 +21,7 @@ export default class NotePageSideBar extends Component {
         const { notes=[], folders=[] } =  this.context
         const { noteId } = this.props.match.params
         const note = findNote(notes, noteId) || {}
-        const folder = findFolder(folders, note.folderId) || {}
+        const folder = findFolder(folders, note.folder) || {}
         return (
             <div key={folder.id} className='Sidebar'>
                 <button type='button' className='Sidebar__back-button'>
@@ -29,7 +29,7 @@ export default class NotePageSideBar extends Component {
                 </button>
                 {folder && (
                     <h3 className='Sidebar__folder-name'>
-                     <span>&#12304;</span> {folder.name} <span>&#12305;</span>
+                     <span>&#12304;</span> {folder.folder_name} <span>&#12305;</span>
                     </h3>
                 )}
             </div>

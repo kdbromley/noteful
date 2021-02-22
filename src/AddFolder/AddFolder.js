@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import config from '../config';
-import { randomString } from '../helperFunc';
 import NotesContext from '../NotesContext';
 import './AddFolder.css'
 
@@ -15,10 +14,8 @@ export default class AddFolder extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const { name } = e.target;
-    const rand = randomString(3, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
     const folder = {
-      id: `b0716${rand}-ffaf-11e8-8eb2-f2801f1b9fd1`,
-      name: name.value,
+      folder_name: name.value,
     }
     this.setState({ error: null })
 
