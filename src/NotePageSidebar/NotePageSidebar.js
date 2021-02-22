@@ -25,13 +25,16 @@ export default class NotePageSideBar extends Component {
         return (
             <div key={folder.id} className='Sidebar'>
                 <button type='button' className='Sidebar__back-button'>
-                <Link to='/'>Back</Link>
+                 <Link to='/'>Back</Link>
                 </button>
                 {folder && (
                     <h3 className='Sidebar__folder-name'>
                      <span>&#12304;</span> {folder.folder_name} <span>&#12305;</span>
                     </h3>
                 )}
+                <button type='button' className='Sidebar__edit-folder-button'>
+                 <Link to='/edit-folder'>Edit Folder</Link>
+                </button>
             </div>
         )
     }

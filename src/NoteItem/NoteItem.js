@@ -10,7 +10,8 @@ import './NoteItem.css';
 export default class NoteItem extends Component {
     static contextType = NotesContext;
     static defaultProps = {
-        onDeleteNote: () => {}
+        onDeleteNote: () => {},
+        note: {}
     }
 
     deleteNote = e => {
@@ -34,7 +35,7 @@ export default class NoteItem extends Component {
         } 
 
     render() {
-    const { note } = this.props
+    const { note } = this.props || {};
     const formattedDate = moment(note.date_created).format('M/D/YYYY')
     return (
         <div className='NoteItem'>
@@ -58,9 +59,9 @@ export default class NoteItem extends Component {
 NoteItem.propsType = {
   note: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    modified: PropTypes.string.isRequired,
-    folderId: PropTypes.string.isRequired,
+    note_title: PropTypes.string.isRequired,
+    date_created: PropTypes.string.isRequired,
+    folder: PropTypes.string.isRequired,
     content: PropTypes.string
   })).isRequired,
   deleteNote: PropTypes.func
