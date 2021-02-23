@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "vercel --prod"
+    "deploy": "npx vercel --prod"
   },
   "eslintConfig": {
     "extends": [
